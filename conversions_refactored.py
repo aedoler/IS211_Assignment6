@@ -7,6 +7,7 @@ class ConversionNotPossible(Exception):
     pass
 
 
+
 def allConversions(fromUnit, toUnit, value):
     fromUnit = fromUnit.lower()
     toUnit = toUnit.lower()
@@ -46,9 +47,11 @@ def allConversions(fromUnit, toUnit, value):
                                         'from {} to {}.'.format(fromUnit, toUnit))
     if fromUnit == 'miles':
         if toUnit == 'yards':
-            pass
+            value = value * 1760.0
+            return value
         elif toUnit == 'meters':
-            pass
+            value = value / 0.00062137
+            return value
         else:
             raise ConversionNotPossible('Please enter valid units to convert. You entered '
                                         'from {} to {}.'.format(fromUnit, toUnit))
@@ -56,12 +59,13 @@ def allConversions(fromUnit, toUnit, value):
         if toUnit == 'meters':
             pass
         elif toUnit == 'miles':
-            pass
+            value = value * 0.00062137
+            return value
         else:
             raise ConversionNotPossible('Please enter valid units to convert. You entered '
                                         'from {} to {}.'.format(fromUnit, toUnit))
-    if fromUnit == 'miles':
-        if toUnit == 'meters':
+    if fromUnit == 'meters':
+        if toUnit == 'miles':
             print 'You made it this far.'
         elif toUnit == 'yards':
             pass
@@ -71,5 +75,5 @@ def allConversions(fromUnit, toUnit, value):
 
 
 
-print allConversions('farenheit', 'kelvin', 3)
+print allConversions('miles', 'meters', 6)
 

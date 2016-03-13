@@ -112,13 +112,38 @@ class testKelvinToFarenheit2(unittest.TestCase):
             result = conversions_refactored.allConversions('kelvin', 'farenheit', kel)
             self.assertEqual(far, result)
 
+class testMilesToYards(unittest.TestCase):
+    """convertCelsiusToFarenheit should return the correct value"""
+    knownValues = [(4,  7040.0), (6, 10560.0),
+                   (40, 70400.0), (200, 352000.0)]
+    def testCorrectResult(self):
+        for mile, yard in self.knownValues:
+            result = conversions_refactored.allConversions('miles', 'yards', mile)
+            self.assertEqual(yard, result)
+
+class testMilesToYards(unittest.TestCase):
+    """convertCelsiusToFarenheit should return the correct value"""
+    knownValues = [(1,  1609.3470878864446), (6, 9656.082527318667),
+                   (50, 80467.35439432222), (500, 804673.5439432223)]
+    def testCorrectResult(self):
+        for mile, meter in self.knownValues:
+            result = conversions_refactored.allConversions('miles', 'meters', mile)
+            self.assertEqual(meter, result)
+
+class TestConversion(unittest.TestCase):
+    bc = [('celsius', 'miles'), ('celsius', 'yards'), ('celsius', 'meters'),
+          ('farenheit', 'miles'), ('farenheit', 'yards'), ('farenheit', 'miles'),
+          ('kelvin', 'miles'), ('kelvin', 'yards'), ('kelvin', 'miles')]
+    def testConversionNotPossible(self):
+        for input in self.bc:
+            self.assertRaises(conversions_refactored.ConversionNotPossible,
+                              conversions_refactored.allConversions, input[0], input[1], -1)
+    def testConversionNotPossible2(self):
+        for input in self.bc:
+            self.assertRaises(conversions_refactored.ConversionNotPossible,
+                              conversions_refactored.allConversions, input[1], input[0], -1)
+
 
 if __name__ == "__main__":
     unittest.main()
 
-
-
-
-
-if __name__ == "__main__":
-    unittest.main()
