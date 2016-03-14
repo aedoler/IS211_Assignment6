@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """Conversions"""
 
-import decimal
 
 
 def convertCelsiusToKelvin(degrees):
@@ -18,28 +17,21 @@ def convertCelsiusToKelvin(degrees):
     ABSOLUTE_DIFFERENCE = 273.15
     val_kelv = degrees + ABSOLUTE_DIFFERENCE
 
-    return val_kelv
+    return round(val_kelv)
 
 def convertCelsiusToFarenheit(degrees):
     """Does math to return conversion from c to f.
     """
-    val_a = 32
-    val_b = 1.8
+    degrees = ((degrees * 1.8) + 32)
 
-    degrees = ((degrees * val_b) + val_a)
-
-    return degrees
+    return round(degrees)
 
 def convertFarenheitToCelsius(degrees):
     """Does math to return conversion from f to c.
     """
-    val_a = 32
-    val_b = 5
-    val_c = 9
+    degrees = ((degrees - 32) * 5) / 9
 
-    degrees = ((degrees - val_a) * val_b) / val_c
-
-    return degrees
+    return round(degrees)
 
 def convertFarenheitToKelvin(degrees):
     """does math to return conv from f to k
@@ -52,13 +44,12 @@ def convertKelvinToCelsius(degrees):
     """convert k to c"""
     ABSOLUTE_DIFFERENCE = 273.15
     val_cel = degrees - ABSOLUTE_DIFFERENCE
-    return val_cel
+    return round(val_cel)
 
 def convertKelvinToFarenheit(degrees):
     """ convet k to f
     """
     degrees = convertKelvinToCelsius(degrees)
     degrees = convertCelsiusToFarenheit(degrees)
-    return degrees
+    return round(degrees)
 
-print convertKelvinToFarenheit(600)
